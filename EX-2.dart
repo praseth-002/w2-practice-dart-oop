@@ -43,11 +43,12 @@ class Bank {
 
     Bank(this._name, this._bankAccounts);
 
-    BankAccount? createAccount (String fName, String lName, String bID, double balance) {
+    BankAccount createAccount (String fName, String lName, String bID, double balance) {
       for (var bankAccount in _bankAccounts) {
         if(bID == bankAccount._bankID){
           print("Bank ID $bID already exists");
-          return null;
+          // return null;
+          throw Exception("ID ALR EXIST");
         }
       }
       BankAccount nAccount = BankAccount(fName, lName, this._name, bID, balance);
@@ -86,12 +87,12 @@ void main() {
   // print(b1.balance);
 
   Bank ABA = Bank("ABA", {});
-  var b2 = ABA.createAccount("Jane", "Johns", "ABA1", 0);
+  BankAccount b2 = ABA.createAccount("Jane", "Johns", "ABA1", 0);
   // var b3 = ABA.createAccount("Jane", "Johns", "ABA1", 0);
   var b3 = ABA.createAccount("Jane", "Johns", "ABA2", 0);
-  b2!.credit(100);
-  b3!.credit(-100);
-  b2!.withdraw(5);
+  b2.credit(100);
+  b3.credit(-100);
+  b2.withdraw(5);
 
 
 
